@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-
-
 #include <sys/types.h>
 #include <signal.h>
 // execute the commande 
@@ -129,7 +127,7 @@ int	main()
 	}
 
 	// ecriture d'un prompt
-	write(1, "$> ", 3);
+	write(1, "=> ", 3);
 
 	// lecture de STDIN en boucle
 	while (getline(&buffer, &buf_size, stdin) > 0) {
@@ -137,15 +135,13 @@ int	main()
 		get_absolute_path(cmd);
 
 		if (cmd[0] == NULL)
-			printf("Command not found\n");
+			printf("Command not found \n");
 		else
 			exec_cmd(cmd);
 
-		write(1, "$> ", 3);
+		write(1, "=> ", 3);
 		free_array(cmd);
 
 	}
-
-	printf("Bye \n");
 	free(buffer);
 	}
